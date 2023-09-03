@@ -1,4 +1,4 @@
-# ![Alt text](<lol 512.png> | width=100) SummaVid
+SummaVid
 
 ## Getting started
 

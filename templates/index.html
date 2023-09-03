@@ -11,49 +11,88 @@
   <body>
     <div class="container">
       <h1 class="title">SummaVid</h1>
+      <h1 class="title">💬 > 📰 > 📝</h1>
       <form action="/run" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="file">Upload file:</label>
+
           <input type="file" name="file" id="file" required />
+          Supported formats: .m4a .mp3 .webm .mp4 .mpga .wav .mpeg
         </div>
         <div class="form-group">
-          <label for="video-type">Video type:</label>
+          <label for="video-type">Video / Audio type:</label>
           <select name="video_type" id="video_type" required>
             <option value="">Select type</option>
-            <option value="lecture">lecture</option>
-            <option value="other">other</option>
+            <option value="lecture">Lecture</option>
+            <option value="meeting">Meeting</option>
+            <option value="other">Other</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="whisper_model">Whisper Model:</label>
+          <label for="language">Language:</label>
+          <select name="language" id="language" required>
+            <option value="">Select language</option>
+            <option value="English">English</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="whisper_model">Transcription:</label>
           <select name="whisper_model" id="whisper_model" required>
-            <option value="">Select model</option>
-            <option value="base">base</option>
-            <option value="base.en">base.en</option>
-            <option value="small">small</option>
-            <option value="small.en">small.en</option>
-            <option value="large">large</option>
+            <option value="">Select precision when transcribing audio</option>
+            <option value="tiny">Prioritize Speed</option>
+            <option value="base">Standard</option>
+            <option value="small">High</option>
+            <option value="medium">Very High</option>
+            <option value="large">
+              Insanely High (Warning: Extremely Slow)
+            </option>
           </select>
         </div>
+
         <div class="form-group">
-          <label for="gpt_model">GPT Model:</label>
-          <input type="text" name="gpt_model" id="gpt_model" required />
+          <label for="gpt_model">Context:</label>
+          <select name="gpt_model" id="gpt_model" required>
+            <option value="">Select context complexity</option>
+            <option value="gpt-3.5-turbo">
+              Standard Complexity (Under ~3000 words)
+            </option>
+            <option value="gpt-3.5-turbo-16k">
+              Standard Complexity (Under ~12000 words)
+            </option>
+            <option value="gpt-4">Complex Ideas (Under ~3000 words)</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="api_key">API Key:</label>
+
           <input type="text" name="api_key" id="api_key" required />
+          <a
+            href="https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key"
+            target="_blank"
+          >
+            Where do I find this?
+          </a>
         </div>
         <input type="submit" value="Run" class="btn" />
       </form>
 
       {% if summary %}
       <h2 class="subtitle">Summary</h2>
-      <textarea readonly class="summary-box">{{ summary }}</textarea>
+      <textarea readonly class="summary-box">
+        {{ summary }}
+      </textarea>
       {% endif %} {% if important_dates %}
       <h2 class="subtitle">Important Dates</h2>
       <textarea readonly class="summary-box">
-      {{ important_dates }}</textarea
-      >
+        {{ important_dates }}
+      </textarea>
+      {% endif %} {% if transcript %}
+      <h2 class="subtitle">Transcript</h2>
+      <textarea readonly class="summary-box">
+        {{ transcript }}
+      </textarea>
       {% endif %}
     </div>
   </body>

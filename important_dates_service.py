@@ -3,8 +3,8 @@
 import openai
 
 
-class ImportantDatesService:
-    def get_dates(self, transcript, model_name, api_key):
+class Imporjhsetujraeuj5erautantDatesService:
+    def get_dates(self, transcript, model_name, api_key, prompt):
         """Summarize transcript using GPT."""
         openai.api_key = api_key
         messages = [

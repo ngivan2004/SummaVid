@@ -4,11 +4,11 @@ import openai
 
 
 class SummarizationService:
-    def summarize(self, transcript, model_name, api_key):
+    def summarize(self, transcript, model_name, api_key, prompt):
         """Summarize transcript using GPT."""
         openai.api_key = api_key
         messages = [
-            {"role": "system", "content": "You will analyze a huge transcript from a video and create a summary in the form of a list useful to the audience. Include important information in the summary. Translate to English if needed."},
+            {"role": "system", "content": prompt},
             {"role": "user", "content": transcript}
         ]
         response = openai.ChatCompletion.create(

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SummaVid</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">SummaVid</h1>
+      <form action="/run" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="file">Upload file:</label>
+          <input type="file" name="file" id="file" required />
+        </div>
+        <div class="form-group">
+          <label for="video-type">Video type:</label>
+          <select name="video_type" id="video_type" required>
+            <option value="">Select type</option>
+            <option value="lecture">lecture</option>
+            <option value="other">other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="whisper_model">Whisper Model:</label>
+          <select name="whisper_model" id="whisper_model" required>
+            <option value="">Select model</option>
+            <option value="base">base</option>
+            <option value="base.en">base.en</option>
+            <option value="small">small</option>
+            <option value="small.en">small.en</option>
+            <option value="large">large</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="gpt_model">GPT Model:</label>
+          <input type="text" name="gpt_model" id="gpt_model" required />
+        </div>
+        <div class="form-group">
+          <label for="api_key">API Key:</label>
+          <input type="text" name="api_key" id="api_key" required />
+        </div>
+        <input type="submit" value="Run" class="btn" />
+      </form>
+
+      {% if summary %}
+      <h2 class="subtitle">Summary</h2>
+      <textarea readonly class="summary-box">{{ summary }}</textarea>
+      {% endif %} {% if important_dates %}
+      <h2 class="subtitle">Important Dates</h2>
+      <textarea readonly class="summary-box">
+      {{ important_dates }}</textarea
+      >
+      {% endif %}
+    </div>
+  </body>
+</html>

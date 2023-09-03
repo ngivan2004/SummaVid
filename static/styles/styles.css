@@ -1,0 +1,137 @@
+body,
+input,
+select,
+button,
+summary-box {
+  font-size: 16px;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: slide-up 0.5s ease-out;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title {
+  text-align: center;
+  color: #333;
+  animation: fade-in 1s ease-in;
+}
+
+.subtitle {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #555;
+  animation: fade-in 1.5s ease-in;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: inline-block;
+  width: 150px;
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="file"],
+.form-group select {
+  /* Add box-sizing to include padding and border in the element's total width */
+  box-sizing: border-box;
+  width: calc(100% - 30px); /* Adjust as needed */
+  padding: 12px;
+  margin: 4px 0;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  appearance: none; /* Remove default appearance */
+  font-size: 16px;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="file"]:focus,
+.form-group select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+  transform: scale(1.02);
+}
+
+.form-group input[type="text"]:hover,
+.form-group input[type="file"]:hover,
+.form-group select:hover {
+  border-color: #666;
+  box-shadow: 0 0 10px rgba(100, 100, 100, 0.5);
+}
+
+.btn {
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: 16;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.summary-box {
+  width: calc(100% - 30px);
+  height: 500px;
+  padding: 12px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+  transition: all 0.3s ease;
+  line-height: 1.5;
+  font-size: 16px !important;
+}
+
+.summary-box:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+  transform: scale(1.02);
+}
+
+.summary-box:hover {
+  border-color: #666;
+  box-shadow: 0 0 10px rgba(100, 100, 100, 0.5);
+}

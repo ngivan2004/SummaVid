@@ -5,7 +5,7 @@ import openai
 
 class SummarizationService:
     def summarize(self, transcript, model_name, api_key, prompt):
-        """Summarize transcript using GPT."""
+        # Summarize transcript using GPT
         openai.api_key = api_key
         messages = [
             {"role": "system", "content": prompt},

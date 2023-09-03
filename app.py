@@ -14,6 +14,8 @@ if not os.path.exists(app.config['UPLOAD_FOLDER']):
 transcription_service = TranscriptionService()
 summarization_service = SummarizationService()
 
+
+# Prompts for different video/audio types
 summarization_prompt = "You will analyze a huge transcript from a video and create a summary in the form of a list useful to the audience. Include important information in the summary. Translate to English if needed."
 important_dates_prompt = "You will analyze a huge transcript of a lecture and create a summary of all mentioned important dates, such as assignment, quiz, test, and final dates, in the form of a list."
 meeting_prompt = "You will analyze a huge transcript from a meeting and create a summary of it. Mention all proceedings, matters and date mentioned as well as all decisions or future plans mentioned, in the form of a list."
@@ -27,6 +29,8 @@ def index():
 @app.route('/run', methods=['POST'])
 def run_the_thing():
 
+    # Collecting input from flask html
+    # Conditions for determining language
     if request.form['whisper_model'] == "large":
         whisper_model = "large"
     elif request.form['language'] == "English":
@@ -34,14 +38,15 @@ def run_the_thing():
     else:
         whisper_model = request.form['whisper_model']
 
-    # link = request.form['link']
     video_type = request.form['video_type']
     gpt_model = request.form['gpt_model']
     api_key = request.form['api_key']
 
+    # For terminal view
     print("Whisper Model: " + whisper_model)
     print("GPT Model: " + gpt_model)
 
+    # Handle file upload
     file = request.files.get('file')
     if file and file.filename != '':
         filename = secure_filename(file.filename)
@@ -53,13 +58,7 @@ def run_the_thing():
     summary = summarization_service.summarize(
         transcript, gpt_model, api_key, summarization_prompt)
 
-    # if (video_type == "lecture"):
-    #     important_dates = summarization_service.summarize(
-    #         transcript, gpt_model, api_key, important_dates_prompt)
-    #     return render_template('index.html', summary=summary, important_dates=important_dates, transcript=transcript)
-    # else:
-    #     return render_template('index.html', summary=summary, transcript=transcript)
-
+    # Conditions for selecting video type
     match video_type:
         case "lecture":
             important_dates = summarization_service.summarize(

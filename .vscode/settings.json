@@ -1,5 +1,5 @@
 {
-  "liveshare.guestApprovalRequired": false,
+  "liveshare.guestApprovalRequired": true,
   "liveshare.increasedGuestLimit": false,
   "liveshare.anonymousGuestApproval": "accept"
 }

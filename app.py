@@ -48,16 +48,12 @@ def run_the_thing():
     print("GPT Model: " + gpt_model)
 
     # Handle file upload
-    # file = request.files.get('file')
-    # s_filename = secure_filename(file.filename)
-    # if s_filename != '':
-    #     file_ext = os.path.splitext(s_filename)[1]
-    #     if file_ext not in app.config['UPLOAD_EXTENSIONS']:
-    #         ???
-    try:
-        file = handle_file_upload()
-    except:
-        return render_template('index.html', summary="File type not supported. Please select one of: .m4a .mp3 .webm .mp4 .mpga .wav .mpeg")
+    file = request.files.get('file')
+    s_filename = secure_filename(file.filename)
+    if s_filename != '':
+        file_ext = os.path.splitext(s_filename)[1]
+        if file_ext not in app.config['UPLOAD_EXTENSIONS']:
+            return render_template('index.html', summary="File type not supported. Please select one of: .m4a .mp3 .webm .mp4 .mpga .wav .mpeg")
     
     
     if file and file.filename != '':
@@ -85,15 +81,6 @@ def run_the_thing():
         case _:
             return render_template('index.html', summary=summary, transcript=transcript)
 
-
-def handle_file_upload():
-    file = request.files.get('file')
-    s_filename = secure_filename(file.filename)
-    if s_filename != '':
-        file_ext = os.path.splitext(s_filename)[1]
-        if file_ext not in app.config['UPLOAD_EXTENSIONS']:
-            raise Exception("File extension type not supported")
-    return file
 
 if __name__ == '__main__':
     app.run(debug=True)

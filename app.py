@@ -58,6 +58,8 @@ def run_the_thing():
     summary = summarization_service.summarize(
         transcript, gpt_model, api_key, summarization_prompt)
 
+    os.remove(file_path)
+
     # Conditions for selecting video type
     match video_type:
         case "lecture":

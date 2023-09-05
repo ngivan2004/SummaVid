@@ -6,6 +6,7 @@ import os
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'  # Make sure this folder exists
+app.config['UPLOAD_EXTENSIONS'] = ['.m4a','.mp3','.webm','.mp4','.mpga','.wav','.mpeg']
 
 # Create the upload folder if it doesn't exist
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
@@ -48,6 +49,13 @@ def run_the_thing():
 
     # Handle file upload
     file = request.files.get('file')
+    s_filename = secure_filename(file.filename)
+    if s_filename != '':
+        file_ext = os.path.splitext(s_filename)[1]
+        if file_ext not in app.config['UPLOAD_EXTENSIONS']:
+            return render_template('index.html', summary="File type not supported. Please select one of: .m4a .mp3 .webm .mp4 .mpga .wav .mpeg")
+    
+    
     if file and file.filename != '':
         filename = secure_filename(file.filename)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
@@ -57,6 +65,8 @@ def run_the_thing():
     transcript = transcription_service.transcribe(link, whisper_model, api_key)
     summary = summarization_service.summarize(
         transcript, gpt_model, api_key, summarization_prompt)
+
+    os.remove(file_path)
 
     # Conditions for selecting video type
     match video_type:

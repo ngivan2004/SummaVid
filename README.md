@@ -1,5 +1,6 @@
 ![image](https://github.com/ngivan2004/SummaVid/assets/61515871/c3cd1e03-0010-48d2-a33f-fc1f12a3dd67)
 ![image](https://github.com/ngivan2004/SummaVid/assets/61515871/72067ce3-1d2a-4728-95b3-e496fc2f9fad)
+Devpost submission: https://devpost.com/software/lorem-ipsum-fwhc1r
 
 # SummaVid
 

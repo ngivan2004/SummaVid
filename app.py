@@ -17,9 +17,21 @@ summarization_service = SummarizationService()
 
 
 # Prompts for different video/audio types
-summarization_prompt = "You will analyze a huge transcript from a video and create a summary in the form of a list useful to the audience. Include important information in the summary. Translate to English if needed."
-important_dates_prompt = "You will analyze a huge transcript of a lecture and create a summary of all mentioned important dates, such as assignment, quiz, test, and final dates, in the form of a list."
-meeting_prompt = "You will analyze a huge transcript from a meeting and create a summary of it. Mention all proceedings, matters and date mentioned as well as all decisions or future plans mentioned, in the form of a list."
+summarization_prompt = (
+    "You will analyze a transcript that contains timestamps in the format "
+    "[HH:MM:SS]. Create a helpful summary referencing the relevant timestamps "
+    "for each point. Translate to English if needed."
+)
+important_dates_prompt = (
+    "You will analyze a lecture transcript that contains timestamps in the "
+    "format [HH:MM:SS]. List all mentioned assignment, quiz, test and final "
+    "dates together with the timestamp where they are referenced."
+)
+meeting_prompt = (
+    "You will analyze a meeting transcript that contains timestamps in the "
+    "format [HH:MM:SS]. Summarize all proceedings, matters, dates and "
+    "decisions, citing the timestamp for each item."
+)
 
 
 @app.route('/')
